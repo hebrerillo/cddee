@@ -16,7 +16,7 @@ void printList(const List *l)
     while(aux!=NULL)
     {
         printf("%s",(char*)aux->data);
-        aux = aux->next;
+        aux = (ListElement*)aux->next;
     }
 }
 
