@@ -37,11 +37,12 @@ void init(List *l, void (*destroyList)(void *data))
 void printList(const List *l)
 {
     ListElement *aux = l->head;
-    while(aux!=NULL)
+    while (aux != NULL)
     {
-        printf("%s",(char*)aux->data);
+        printf("%s ", (char*) aux->data);
         aux = aux->next;
     }
+    printf("\n");
 }
 
 int main(int argc, char** argv)
