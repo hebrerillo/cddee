@@ -5,7 +5,7 @@
 
 int insert(List *l, const void *data)
 {
-    ListElement *n;
+    ListElement *n = NULL;
     if ((n = (ListElement *) malloc(sizeof (ListElement))) == NULL)
     {
         return -1;
