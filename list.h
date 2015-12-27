@@ -30,6 +30,12 @@ extern "C"
    */
   void init(List *l, void (*destroyList)(void *data));
 
+  
+  /**
+   * Prints the list l
+   * @param l
+   */
+  void printList(const List *l);
   void destroyList(List *list);
   
 
