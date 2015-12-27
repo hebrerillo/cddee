@@ -16,6 +16,7 @@ int insert(List *l, const void *data)
     if (l->head == NULL)
     {
         l->head = n;
+        l->end = l->head;
     }
     else
     {
