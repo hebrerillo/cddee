@@ -30,7 +30,14 @@ extern "C"
    */
   void init(List *l, void (*destroyList)(void *data));
   
- 
+  /**
+   * Inserts a new element after element
+   * @param l
+   * @param element
+   * @param data
+   * @return -1 In case of error
+   */
+  int insertAfter(List *l,ListElement *element,const void *data);
   
   /**
    * Inserts a new element at the head of the list

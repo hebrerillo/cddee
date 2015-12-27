@@ -46,12 +46,47 @@ void printList(const List *l)
     printf("\n");
 }
 
+
+int insertAfter(List *l, ListElement *element, const void *data)
+{
+    ListElement *n = NULL;
+    if(element == NULL)
+    {
+        return insert(l,data);
+    }
+    else
+    {
+        
+        if ((n = (ListElement *) malloc(sizeof (ListElement))) == NULL)
+        {
+            return -1;
+        }
+        n->data = (void*) data;
+        n->next = NULL;
+        
+        if(element == l->end)
+        {
+            l->end->next = n;
+            l->end = n;
+        }
+        else
+        {
+            n->next = element->next;
+            element->next = n;
+        }
+        return 1;
+    }
+}
+
+
 int main(int argc, char** argv)
 {
     List l;
     init(&l, NULL);
-    insert(&l, "olakase");
-    insert(&l, "olakase2");
+    
+    insertAfter(&l,NULL,"olakase");
+    insertAfter(&l,l.head,"olakase1");
+    insertAfter(&l,l.head->next,"olakase2");
     
 
     printList(&l);
