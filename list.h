@@ -29,7 +29,16 @@ extern "C"
    * @param destroyList The destroy function
    */
   void init(List *l, void (*destroyList)(void *data));
-
+  
+ 
+  
+  /**
+   * Inserts a new element at the head of the list
+   * @param l
+   * @param data
+   * @return 
+   */
+  int insert(List *l,const void *data);
   
   /**
    * Prints the list l

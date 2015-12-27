@@ -3,6 +3,30 @@
 #include <string.h>
 #include "list.h"
 
+int insert(List *l, const void *data)
+{
+    ListElement *n;
+    if ((n = (ListElement *) malloc(sizeof (ListElement))) == NULL)
+    {
+        return -1;
+    }
+    n->data = (void*) data;
+    n->next = NULL;
+    
+    if (l->head == NULL)
+    {
+        l->head = n;
+    }
+    else
+    {
+        n->next = l->head;
+        l->head = n;
+    }
+    return 1;
+}
+
+
+
 void init(List *l, void (*destroyList)(void *data))
 {
     l->size = 0;
@@ -23,7 +47,11 @@ void printList(const List *l)
 int main(int argc, char** argv)
 {
     List l;
-    init(&l,NULL);
+    init(&l, NULL);
+    insert(&l, "olakase");
+    insert(&l, "olakase2");
+    
+
     printList(&l);
     return (EXIT_SUCCESS);
 }
