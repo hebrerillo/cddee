@@ -1,10 +1,24 @@
-include /var/www/c/makefile
+#debug options
+CDEBUG = -g
+
+CC     = gcc
+GCC    = gcc
+CFLAGS = -Wall $(CDEBUG) 
+
+
+
+
+%.o: %.c %.h
+	@$(CC) -c $(CFLAGS) $< -o $@
+
+%.o: %.c
+	@$(CC) -c $(CFLAGS) $< -o $@
 
 OBJS = list.o
 
 
 list : $(OBJS)
-	@$(CC) $(CFLAGS) $^ -o $@ $(LFLAGS) -pthread
+	@$(CC) $(CFLAGS) $^ -o $@
 
 .PHONY: clean
 clean:
