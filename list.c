@@ -12,6 +12,7 @@ int insert(List *l, const void *data,int size)
     }
     n->data = (void *)malloc(size);
     memcpy(n->data,data,size);
+    n->size = size;
     n->next = NULL;
     
     if (l->head == NULL)
@@ -40,13 +41,19 @@ void init(List *l, void (*destroyList)(void *data))
 void printList(const List *l)
 {
     ListElement *aux = l->head;
+    size_t i;
     while (aux != NULL)
     {
-        printf("%s ", (char*) aux->data);
+        for(i=0;i < (aux->size/sizeof(int)) ;i++)
+        {
+            
+            printf("%d \n", ((int*)aux->data)[i]);
+        }
+        printf("\n");
         aux = aux->next;
     }
     printf("\n");
-    printf("Size of list = %d\n",l->size);
+    printf("Size = %d\n",l->size);
 }
 
 
@@ -67,7 +74,7 @@ int insertAfter(List *l, ListElement *element, const void *data,int size)
         n->data = (void *)malloc(size);
         memcpy(n->data,data,size);
         n->next = NULL;
-        
+        n->size = size;
         if(element == l->end)
         {
             l->end->next = n;
@@ -85,14 +92,14 @@ int insertAfter(List *l, ListElement *element, const void *data,int size)
 
 int main(int argc, char** argv)
 {
-    
     List l;
     init(&l, NULL);
-    const char item1[] = "item1";
-    const char item2[] = "item2";
     
-    insert(&l,item1,sizeof(item1));
-    insert(&l,item2,sizeof(item2));
+    const int n1[] = {1,2,3,4};
+    const int n2[] = {5,6,7,8,9};
+    
+    insert(&l,n1,sizeof(n1));
+    insert(&l,n2,sizeof(n2));
     printList(&l);
     return (EXIT_SUCCESS);
 }

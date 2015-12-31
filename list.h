@@ -10,6 +10,7 @@ extern "C"
   {
     void *data;
     struct ListElement_ *next;
+    size_t size;
   } ListElement;
 
   typedef struct List_
