@@ -37,7 +37,7 @@ extern "C"
    * @param data
    * @return -1 In case of error
    */
-  int insertAfter(List *l,ListElement *element,const void *data);
+  int insertAfter(List *l, ListElement *element, const void *data,int size);
   
   /**
    * Inserts a new element at the head of the list
@@ -45,7 +45,7 @@ extern "C"
    * @param data
    * @return 
    */
-  int insert(List *l,const void *data);
+  int insert(List *l, const void *data,int size);
   
   /**
    * Prints the list l

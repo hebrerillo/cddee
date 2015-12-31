@@ -3,14 +3,15 @@
 #include <string.h>
 #include "list.h"
 
-int insert(List *l, const void *data)
+int insert(List *l, const void *data,int size)
 {
     ListElement *n = NULL;
     if ((n = (ListElement *) malloc(sizeof (ListElement))) == NULL)
     {
         return -1;
     }
-    n->data = (void*) data;
+    n->data = (void *)malloc(size);
+    memcpy(n->data,data,size);
     n->next = NULL;
     
     if (l->head == NULL)
@@ -23,6 +24,7 @@ int insert(List *l, const void *data)
         n->next = l->head;
         l->head = n;
     }
+    l->size++;
     return 1;
 }
 
@@ -44,15 +46,16 @@ void printList(const List *l)
         aux = aux->next;
     }
     printf("\n");
+    printf("Size of list = %d\n",l->size);
 }
 
 
-int insertAfter(List *l, ListElement *element, const void *data)
+int insertAfter(List *l, ListElement *element, const void *data,int size)
 {
     ListElement *n = NULL;
     if(element == NULL)
     {
-        return insert(l,data);
+        return insert(l,data,size);
     }
     else
     {
@@ -61,7 +64,8 @@ int insertAfter(List *l, ListElement *element, const void *data)
         {
             return -1;
         }
-        n->data = (void*) data;
+        n->data = (void *)malloc(size);
+        memcpy(n->data,data,size);
         n->next = NULL;
         
         if(element == l->end)
@@ -81,14 +85,14 @@ int insertAfter(List *l, ListElement *element, const void *data)
 
 int main(int argc, char** argv)
 {
+    
     List l;
     init(&l, NULL);
+    const char item1[] = "item1";
+    const char item2[] = "item2";
     
-    insertAfter(&l,NULL,"olakase");
-    insertAfter(&l,l.head,"olakase1");
-    insertAfter(&l,l.head->next,"olakase2");
-    
-
+    insert(&l,item1,sizeof(item1));
+    insert(&l,item2,sizeof(item2));
     printList(&l);
     return (EXIT_SUCCESS);
 }
