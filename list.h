@@ -54,6 +54,13 @@ extern "C"
    */
   void printList(const List *l);
   void destroyList(List *list);
+  /**
+   * 
+   * @param dest The destination list
+   * @param source The source list to copy elements from
+   * @return 1 if successful, 0 otherwise
+   */
+  int copyList (List *dest,const List *source);
   
 
 #ifdef	__cplusplus
