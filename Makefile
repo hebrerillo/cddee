@@ -14,10 +14,10 @@ CFLAGS = -Wall $(CDEBUG)
 %.o: %.c
 	@$(CC) -c $(CFLAGS) $< -o $@
 
-OBJS = list.o
+OBJS = main.o list.o
 
 
-list : $(OBJS)
+main : $(OBJS)
 	@$(CC) $(CFLAGS) $^ -o $@
 
 .PHONY: clean
