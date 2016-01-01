@@ -19,6 +19,7 @@ int insert(List *l, const void *data,int size)
     {
         l->head = n;
         l->end = l->head;
+        l->end->next = NULL;
     }
     else
     {
@@ -103,4 +104,41 @@ int copyList (List *dest,const List *source)
    return 1;
 }
 
-
+int removeNext(List *list,ListElement *element,void *data)
+{
+    if(list == NULL || list->size == 0 || list->head == NULL)return 0;
+    ListElement *old;
+    if(element == NULL)//remove head
+    {
+        old = list->head;
+        list->head = list->head->next;
+    }
+    else
+    {
+        if( element->next!= NULL )
+        {
+            old = element->next;
+            if(element->next == list->end)
+            {
+                list->end = element;
+                list->end->next = NULL;
+            }
+            else if(element->next->next != NULL)
+            {
+                element->next = element->next->next;
+            }
+        }
+        else
+        {
+            return 0;
+        }
+    }
+    
+    free (old->data);
+    old->data = NULL;
+    free (old);
+    old = NULL;
+    
+    list->size--;
+    return 1;
+}

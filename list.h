@@ -22,8 +22,15 @@ extern "C"
     void (*destroy)(void *data);
 
   } List;
-
-
+  
+  /**
+   * Removes an element from the list. If element is NULL, the head is removed
+   * @param list
+   * @param element
+   * @param data
+   * @return 1 if success, 0 otherwise
+   */
+  int removeNext(List *list,ListElement *element,void *data);
   /**
    * 
    * @param l Initializes a linked list
