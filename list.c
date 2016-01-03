@@ -6,7 +6,8 @@ int buildFromFile(List *l, const char *filename)
     char line[50];
     regex_t r;
     int ret;
-    const char *regex_text = "[0-9]{3}\\s*[0-9]{2}\\s*[0-9]{2}\\s*[0-9]{2}";
+    char error_message[1000];
+    const char *regex_text = "(+[0-9]{2})?[0-9]{3}\\s*[0-9]{2}\\s*[0-9]{2}\\s*[0-9]{2}";
     
     
     const int n_matches = 1;
@@ -15,6 +16,10 @@ int buildFromFile(List *l, const char *filename)
     ret = regcomp (&r, regex_text, REG_EXTENDED);
     if (ret != 0)
     {	   
+        
+	regerror (ret, &r, error_message, sizeof(error_message));
+        printf ("Regex error compiling '%s': %s\n",regex_text, error_message);
+        
         return 0;
     }
     
