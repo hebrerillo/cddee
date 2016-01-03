@@ -1,7 +1,3 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <errno.h>
 #include "list.h"
 
 int buildFromFile(List *l, const char *filename)
