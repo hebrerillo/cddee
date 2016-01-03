@@ -68,6 +68,15 @@ extern "C"
    * @return 1 if successful, 0 otherwise
    */
   int copyList(List *dest, const List *source);
+  
+  /**
+   * Builds a new List from data in a FILE
+   * @param l The new list
+   * @param FILE The file to read data from
+   * @return 1 if the operation is successful, false otherwise
+   */
+  int buildFromFile(List *l,const char *filename);
+  
 
 
 #ifdef	__cplusplus

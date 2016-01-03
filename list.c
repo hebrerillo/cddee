@@ -1,7 +1,27 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <errno.h>
 #include "list.h"
+
+int buildFromFile(List *l, const char *filename)
+{
+    FILE *fp = fopen(filename, "r");
+    char line[50];
+    if (fp == NULL)
+    {
+        fprintf(stderr, "%s\n", strerror(errno));
+        return 0;
+    }
+
+    while (fgets(line, sizeof line, fp) != NULL)
+    {
+        line[strcspn(line, "\n")] = '\0';
+        insert(l,line,sizeof(line));
+        printf("Cadena = %s,sizeof = %ld\n",line,strlen(line)+1);
+    }
+    return 1;
+}
 
 int insert(List *l, const void *data, int size)
 {
