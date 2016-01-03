@@ -7,7 +7,7 @@ int buildFromFile(List *l, const char *filename)
     regex_t r;
     int ret;
     char error_message[1000];
-    const char *regex_text = "(+[0-9]{2})?[0-9]{3}\\s*[0-9]{2}\\s*[0-9]{2}\\s*[0-9]{2}";
+    const char *regex_text = "(\\+[0-9]{2})?[0-9]{3}\\s*[0-9]{2}\\s*[0-9]{2}\\s*[0-9]{2}";
     
     
     const int n_matches = 1;
