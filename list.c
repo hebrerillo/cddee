@@ -57,7 +57,20 @@ void init(List *l, void (*destroyList)(void *data))
     l->destroy = destroyList;
 }
 
-void printList(const List *l)
+void printListString(const List *l)
+{
+    ListElement *aux = l->head;
+    
+    while (aux != NULL)
+    {
+        printf("%s\n",(char*)aux->data);
+        aux = aux->next;
+    }
+    printf("\n");
+    printf("Size = %d\n", l->size);
+}
+
+void printListInt(const List *l)
 {
     ListElement *aux = l->head;
     size_t i;

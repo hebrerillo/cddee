@@ -23,6 +23,8 @@ extern "C"
 
   } List;
 
+  
+  void printListString(const List *l);
   /**
    * Removes an element from the list. If element is NULL, the head is removed
    * @param list
