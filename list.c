@@ -4,6 +4,20 @@ int buildFromFile(List *l, const char *filename)
 {
     FILE *fp = fopen(filename, "r");
     char line[50];
+    regex_t r;
+    int ret;
+    const char *regex_text = "[0-9]{3}\\s*[0-9]{2}\\s*[0-9]{2}\\s*[0-9]{2}";
+    
+    
+    const int n_matches = 1;
+    regmatch_t m[n_matches];
+    
+    ret = regcomp (&r, regex_text, REG_EXTENDED);
+    if (ret != 0)
+    {	   
+        return 0;
+    }
+    
     if (fp == NULL)
     {
         fprintf(stderr, "%s\n", strerror(errno));
@@ -13,8 +27,12 @@ int buildFromFile(List *l, const char *filename)
     while (fgets(line, sizeof line, fp) != NULL)
     {
         line[strcspn(line, "\n")] = '\0';
-        insert(l,line,sizeof(line));
-        printf("Cadena = %s,sizeof = %ld\n",line,strlen(line)+1);
+        ret = regexec (&r, line, n_matches, m, 0);
+        if(ret == 0)
+        {
+            insert(l,line,sizeof(line));
+            printf("Cadena = %s,sizeof = %ld\n",line,strlen(line)+1);
+        }
     }
     return 1;
 }
