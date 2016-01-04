@@ -14,7 +14,7 @@ CFLAGS = -Wall $(CDEBUG)
 %.o: %.c
 	@$(CC) -c $(CFLAGS) $< -o $@
 
-OBJS = main.o list.o
+OBJS = main.o list.o userFunctions.o
 
 
 main : $(OBJS)

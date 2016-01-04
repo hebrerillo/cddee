@@ -28,8 +28,17 @@ extern "C"
 
   } List;
 
-  
+  /**
+   * Print a list with string characters as elements
+   * @param l
+   */
   void printListString(const List *l);
+  
+  /**
+   * Print a list with integers arrays as elements
+   * @param l
+   */
+  void printListInt(const List *l);
   /**
    * Removes an element from the list. If element is NULL, the head is removed
    * @param list
@@ -62,11 +71,6 @@ extern "C"
    */
   int insert(List *l, const void *data, int size);
 
-  /**
-   * Prints the list l
-   * @param l
-   */
-  void printList(const List *l);
   void destroyList(List *list);
   /**
    * 
