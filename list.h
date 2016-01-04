@@ -84,6 +84,8 @@ extern "C"
    */
   int buildFromFile(List *l,const char *filename);
   
+  void destroyList(List *l);
+  
 
 
 #ifdef	__cplusplus
