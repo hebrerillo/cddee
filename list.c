@@ -87,6 +87,7 @@ void destroyList(List *l)
             old = l->head->next;
             //destroy head
             l->destroy(l->head);
+            l->size--;
             l->head = old;
         }
     }
