@@ -36,7 +36,6 @@ int buildFromFile(List *l, const char *filename)
         if(ret == 0)
         {
             insert(l,line,sizeof(line));
-            printf("Cadena = %s,sizeof = %ld\n",line,strlen(line)+1);
         }
     }
     return 1;
@@ -74,6 +73,22 @@ void init(List *l, void (*destroyList)(void *data))
     l->size = 0;
     l->head = l->end = NULL;
     l->destroy = destroyList;
+}
+
+void destroyList(List *l)
+{
+    ListElement *old = NULL;
+    if(l->destroy!=NULL)
+    {
+        
+        while(l->head!=NULL)
+        {
+            old = l->head->next;
+            //destroy head
+            l->destroy(l->head);
+            l->head = old;
+        }
+    }
 }
 
 void printListString(const List *l)
