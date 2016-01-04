@@ -38,6 +38,7 @@ int buildFromFile(List *l, const char *filename)
             insert(l,line,sizeof(line));
         }
     }
+    regfree (&r);
     return 1;
 }
 
