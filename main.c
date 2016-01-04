@@ -13,15 +13,46 @@ void destroySimpleList(void *data)
     ListElement *element = (ListElement*)data;
     free(element->data);
     free(element);
+    element = NULL;
+}
+
+/**
+ * Destroy a list of lists
+ * @param data
+ */
+void destroyComplexList(void *data)
+{
+    ListElement *element = (ListElement*)data;
+    List *list = (List*)element->data;
+    destroyList(list);
+    free(element->data);
+    free(element);
+    element = NULL;
 }
 
 
 int main(int argc, char** argv)
 {  
-    List l;
+    List l,l2;
+    List l3;//list of lists
+    
+    const int n[] = {1,2,3};
+    const int n2[] = {10,11,12};
+    
+    //init lists
     init(&l, destroySimpleList);
+    init(&l2, destroySimpleList);
+    init(&l3, destroyComplexList);
+    
+    //insert data
     buildFromFile(&l,"phonenumbers.txt");
-    destroyList(&l);
-    printListString(&l);
+    insert(&l2,n,sizeof(n));
+    insert(&l2,n2,sizeof(n2));
+    
+    insert(&l3,&l,sizeof(l));
+    insert(&l3,&l2,sizeof(l2));
+    
+    destroyList(&l3);
+    
     return (EXIT_SUCCESS);
 }
