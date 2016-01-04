@@ -39,6 +39,7 @@ int buildFromFile(List *l, const char *filename)
         }
     }
     regfree (&r);
+    fclose(fp);
     return 1;
 }
 
