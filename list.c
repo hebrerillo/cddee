@@ -1,5 +1,27 @@
 #include "list.h"
 
+int concat(List *l1,List *l2)
+{
+    if(l1->head == NULL || l2->head == NULL)//do not allow empty list concatenation
+	return 0;
+    
+    if(l1->printList != l2->printList) //check that both lists have the same 'printList' function
+    {
+	return 0;
+    }
+    
+    if(l1->destroy != l2->destroy)//check that both lists have the same 'destroy' function
+    {
+	return 0;
+    }
+    
+    l1->end->next = l2->head;
+    l1->end = l2->end;
+    l1->size +=l2->size;
+    
+    return 1;
+}
+
 int buildFromFile(List *l, const char *filename)
 {
     FILE *fp = fopen(filename, "r");

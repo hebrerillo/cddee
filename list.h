@@ -86,6 +86,13 @@ extern "C"
    */
   void printList(const List *l);
   
+  /**
+   * Concatenates two lists (l1 and l2)
+   * @return 1 if the operation is successful, false otherwise
+   */
+  int concat(List *l1,List *l2);
+  
+  
 
 
 #ifdef	__cplusplus
