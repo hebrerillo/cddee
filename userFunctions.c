@@ -1,6 +1,20 @@
 #include "userFunctions.h"
 
 
+void printComplexList(const List *l)
+{
+    ListElement *aux = l->head;
+    List *current;
+    while (aux != NULL)
+    {
+        current = (List*)aux->data;
+        printList(current);
+        aux = aux->next;
+    }
+    printf("\n");
+    printf("Size = %d\n", l->size);
+}
+
 /**
  * Destroy a list with single data associated
  * @param data

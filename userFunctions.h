@@ -34,6 +34,13 @@ void printListString(const List *l);
  * @param l
  */
 void printListInt(const List *l);
+
+/**
+ * Print a list with other lists as elements
+ * @param l
+ */
+void printComplexList(const List *l);
+
   
 #ifdef	__cplusplus
 }

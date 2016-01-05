@@ -16,7 +16,7 @@ int main(int argc, char** argv)
     //init lists
     init(&l, destroySimpleList,printListString);
     init(&l2, destroySimpleList,printListInt);
-    init(&l3, destroyComplexList,NULL);
+    init(&l3, destroyComplexList,printComplexList);
     
     //insert data
     buildFromFile(&l,"phonenumbers.txt");
@@ -26,8 +26,9 @@ int main(int argc, char** argv)
     insert(&l3,&l,sizeof(l));
     insert(&l3,&l2,sizeof(l2));
     
-    printList(&l);
-    printList(&l2);
+    //printList(&l);
+    //printList(&l2);
+    printList(&l3);
     
     return (EXIT_SUCCESS);
 }
