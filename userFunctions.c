@@ -1,13 +1,12 @@
 #include "userFunctions.h"
 
-
 void printComplexList(const List *l)
 {
     ListElement *aux = l->head;
     List *current;
     while (aux != NULL)
     {
-        current = (List*)aux->data;
+        current = (List*) aux->data;
         printList(current);
         aux = aux->next;
     }
@@ -17,7 +16,7 @@ void printComplexList(const List *l)
 
 void destroySimpleList(void *data)
 {
-    ListElement *element = (ListElement*)data;
+    ListElement *element = (ListElement*) data;
     free(element->data);
     free(element);
     element = NULL;
@@ -25,8 +24,8 @@ void destroySimpleList(void *data)
 
 void destroyComplexList(void *data)
 {
-    ListElement *element = (ListElement*)data;
-    List *list = (List*)element->data;
+    ListElement *element = (ListElement*) data;
+    List *list = (List*) element->data;
     destroyList(list);
     free(element->data);
     free(element);
@@ -36,10 +35,10 @@ void destroyComplexList(void *data)
 void printListString(const List *l)
 {
     ListElement *aux = l->head;
-    
+
     while (aux != NULL)
     {
-        printf("%s\n",(char*)aux->data);
+        printf("%s\n", (char*) aux->data);
         aux = aux->next;
     }
     printf("\n");

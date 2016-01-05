@@ -1,24 +1,24 @@
 #include "list.h"
 
-int concat(List *l1,List *l2)
+int concat(List *l1, List *l2)
 {
-    if(l1->head == NULL || l2->head == NULL)//do not allow empty list concatenation
-	return 0;
-    
-    if(l1->printList != l2->printList) //check that both lists have the same 'printList' function
+    if (l1->head == NULL || l2->head == NULL)//do not allow empty list concatenation
+        return 0;
+
+    if (l1->printList != l2->printList) //check that both lists have the same 'printList' function
     {
-	return 0;
+        return 0;
     }
-    
-    if(l1->destroy != l2->destroy)//check that both lists have the same 'destroy' function
+
+    if (l1->destroy != l2->destroy)//check that both lists have the same 'destroy' function
     {
-	return 0;
+        return 0;
     }
-    
+
     l1->end->next = l2->head;
     l1->end = l2->end;
-    l1->size +=l2->size;
-    
+    l1->size += l2->size;
+
     return 1;
 }
 
@@ -30,21 +30,21 @@ int buildFromFile(List *l, const char *filename)
     int ret;
     char error_message[1000];
     const char *regex_text = "(\\+[0-9]{2})?[0-9]{3}\\s*[0-9]{2}\\s*[0-9]{2}\\s*[0-9]{2}";
-    
-    
+
+
     const int n_matches = 1;
     regmatch_t m[n_matches];
-    
-    ret = regcomp (&r, regex_text, REG_EXTENDED);
+
+    ret = regcomp(&r, regex_text, REG_EXTENDED);
     if (ret != 0)
-    {	   
-        
-	regerror (ret, &r, error_message, sizeof(error_message));
-        printf ("Regex error compiling '%s': %s\n",regex_text, error_message);
-        
+    {
+
+        regerror(ret, &r, error_message, sizeof (error_message));
+        printf("Regex error compiling '%s': %s\n", regex_text, error_message);
+
         return 0;
     }
-    
+
     if (fp == NULL)
     {
         fprintf(stderr, "%s\n", strerror(errno));
@@ -54,13 +54,13 @@ int buildFromFile(List *l, const char *filename)
     while (fgets(line, sizeof line, fp) != NULL)
     {
         line[strcspn(line, "\n")] = '\0';
-        ret = regexec (&r, line, n_matches, m, 0);
-        if(ret == 0)
+        ret = regexec(&r, line, n_matches, m, 0);
+        if (ret == 0)
         {
-            insert(l,line,sizeof(line));
+            insert(l, line, sizeof (line));
         }
     }
-    regfree (&r);
+    regfree(&r);
     fclose(fp);
     return 1;
 }
@@ -92,7 +92,7 @@ int insert(List *l, const void *data, int size)
     return 1;
 }
 
-void init(List *l, void (*destroyList)(void *data),void (*printList)(const List *list))
+void init(List *l, void (*destroyList)(void *data), void (*printList)(const List *list))
 {
     l->size = 0;
     l->head = l->end = NULL;
@@ -103,10 +103,10 @@ void init(List *l, void (*destroyList)(void *data),void (*printList)(const List 
 void destroyList(List *l)
 {
     ListElement *old = NULL;
-    if(l->destroy!=NULL)
+    if (l->destroy != NULL)
     {
-        
-        while(l->head!=NULL)
+
+        while (l->head != NULL)
         {
             old = l->head->next;
             //destroy head
@@ -119,7 +119,7 @@ void destroyList(List *l)
 
 void printList(const List *l)
 {
-    if(l->printList!=NULL)
+    if (l->printList != NULL)
         l->printList(l);
 }
 
