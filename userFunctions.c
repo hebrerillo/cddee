@@ -15,10 +15,6 @@ void printComplexList(const List *l)
     printf("Size = %d\n", l->size);
 }
 
-/**
- * Destroy a list with single data associated
- * @param data
- */
 void destroySimpleList(void *data)
 {
     ListElement *element = (ListElement*)data;
@@ -27,10 +23,6 @@ void destroySimpleList(void *data)
     element = NULL;
 }
 
-/**
- * Destroy a list of lists
- * @param data
- */
 void destroyComplexList(void *data)
 {
     ListElement *element = (ListElement*)data;
