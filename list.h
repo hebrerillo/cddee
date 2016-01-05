@@ -24,21 +24,11 @@ extern "C"
     int (*match)(const void *key1, const void *key2);
     ListElement *head;
     ListElement *end;
-    void (*destroy)(void *data);
+    void (*destroy)(void *data);//user function to destroy the data of this list
+    void (*printList)(const struct List_ *list);//user function to print the data of this list
 
   } List;
-
-  /**
-   * Print a list with string characters as elements
-   * @param l
-   */
-  void printListString(const List *l);
   
-  /**
-   * Print a list with integers arrays as elements
-   * @param l
-   */
-  void printListInt(const List *l);
   /**
    * Removes an element from the list. If element is NULL, the head is removed
    * @param list
@@ -52,7 +42,7 @@ extern "C"
    * @param l Initializes a linked list
    * @param destroyList The destroy function
    */
-  void init(List *l, void (*destroyList)(void *data));
+  void init(List *l, void (*destroyList)(void *data),void (*printList)(const List *list));
 
   /**
    * Inserts a new element after element
@@ -89,6 +79,12 @@ extern "C"
   int buildFromFile(List *l,const char *filename);
   
   void destroyList(List *l);
+  
+  /**
+   * Prints a list using the user-defined function l->printList
+   * @param l
+   */
+  void printList(const List *l);
   
 
 

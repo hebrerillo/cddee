@@ -4,7 +4,7 @@
 
 #ifndef USERFUNCTIONS_H
 #define	USERFUNCTIONS_H
-
+#include "list.h"
 #ifdef	__cplusplus
 extern "C"
 {
@@ -23,7 +23,18 @@ void destroySimpleList(void *data);
  */
 void destroyComplexList(void *data);
 
-
+/**
+ * Print a list with string characters as elements
+ * @param l
+ */
+void printListString(const List *l);
+  
+/**
+ * Print a list with integers arrays as elements
+ * @param l
+ */
+void printListInt(const List *l);
+  
 #ifdef	__cplusplus
 }
 #endif

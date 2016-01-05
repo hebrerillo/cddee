@@ -14,9 +14,9 @@ int main(int argc, char** argv)
     const int n2[] = {10,11,12};
     
     //init lists
-    init(&l, destroySimpleList);
-    init(&l2, destroySimpleList);
-    init(&l3, destroyComplexList);
+    init(&l, destroySimpleList,printListString);
+    init(&l2, destroySimpleList,printListInt);
+    init(&l3, destroyComplexList,NULL);
     
     //insert data
     buildFromFile(&l,"phonenumbers.txt");
@@ -26,7 +26,8 @@ int main(int argc, char** argv)
     insert(&l3,&l,sizeof(l));
     insert(&l3,&l2,sizeof(l2));
     
-    destroyList(&l3);
+    printList(&l);
+    printList(&l2);
     
     return (EXIT_SUCCESS);
 }
