@@ -10,6 +10,7 @@ int main(int argc, char** argv)
 
     int n[] = {1, 2, 3};
     int n2[] = {10, 11, 12};
+    
 
     //init lists
     init(&l, destroySimpleList, printListInt);
@@ -18,10 +19,12 @@ int main(int argc, char** argv)
 
     //insert data
     insert(&l, n, sizeof (n));
-    insert(&l2, n2, sizeof (n2));
+    insert(&l, n2, sizeof (n2));
+    
+    printList(&l);
+    pop(&l);
+    printList(&l);
 
     destroyList(&l);
-    destroyList(&l2);
-    destroyList(&l2);
     return (EXIT_SUCCESS);
 }

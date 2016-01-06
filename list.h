@@ -34,6 +34,12 @@ extern "C" {
     } List;
 
     /**
+     * Removes the head of the list and return it as a pointer to ListElement
+     * @param l
+     * @return ListElement
+     */
+    ListElement* pop(List *l);
+    /**
      * Removes an element from the list. If element is NULL, the head is removed
      * @param list
      * @param element

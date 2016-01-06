@@ -205,3 +205,13 @@ int removeNext(List *list, ListElement *element, void *data)
     list->size--;
     return 1;
 }
+
+ListElement* pop(List *l)
+{
+    ListElement *ret = NULL;
+    if(l->head == NULL)return NULL;
+    
+    ret = l->head;
+    l->head = l->head->next;
+    return ret;
+}
