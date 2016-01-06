@@ -17,9 +17,7 @@ void printComplexList(const List *l)
 void destroySimpleList(void *data)
 {
     ListElement *element = (ListElement*) data;
-//    free(element->data);
     free(element);
-    element = NULL;
 }
 
 void destroyComplexList(void *data)
@@ -27,9 +25,7 @@ void destroyComplexList(void *data)
     ListElement *element = (ListElement*) data;
     List *list = (List*) element->data;
     destroyList(list);
-//    free(element->data);
     free(element);
-    element = NULL;
 }
 
 void printListString(const List *l)
