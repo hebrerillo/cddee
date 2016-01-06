@@ -22,5 +22,6 @@ int main(int argc, char** argv)
 
     destroyList(&l);
     destroyList(&l2);
+    destroyList(&l2);
     return (EXIT_SUCCESS);
 }

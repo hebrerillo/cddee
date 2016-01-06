@@ -112,6 +112,10 @@ void destroyList(List *l)
             l->size--;
             l->head = old;
         }
+        l->destroy = NULL;
+        l->printList = NULL;
+        l->head = NULL;
+        l->end = NULL;
     }
 }
 
