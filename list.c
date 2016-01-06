@@ -70,7 +70,7 @@ int insert(List *l, const void *data, int size)
     ListElement *n = NULL;
     if ((n = (ListElement *) malloc(sizeof (ListElement))) == NULL)
     {
-        return -1;
+        return 0;
     }
     n->data = (void *) malloc(size);
     memcpy(n->data, data, size);
@@ -109,8 +109,7 @@ void destroyList(List *l)
         while (l->head != NULL)
         {
             old = l->head->next;
-            //destroy head
-            l->destroy(l->head);
+            l->destroy(l->head);//call user defined function to destroy the data
             l->size--;
             l->head = old;
         }
@@ -120,13 +119,13 @@ void destroyList(List *l)
 void printList(const List *l)
 {
     if (l->printList != NULL)
-        l->printList(l);
+        l->printList(l);//call user defined function to print the list
 }
 
 int insertAfter(List *l, ListElement *element, const void *data, int size)
 {
     ListElement *n = NULL;
-    if (element == NULL)
+    if (element == NULL) //if element is NULL, insert at the head
     {
         return insert(l, data, size);
     }
@@ -135,13 +134,13 @@ int insertAfter(List *l, ListElement *element, const void *data, int size)
 
         if ((n = (ListElement *) malloc(sizeof (ListElement))) == NULL)
         {
-            return -1;
+            return 0;
         }
         n->data = (void *) malloc(size);
         memcpy(n->data, data, size);
         n->next = NULL;
         n->size = size;
-        if (element == l->end)
+        if (element == l->end)//the new element is inserted after the end, so it becomes the new end
         {
             l->end->next = n;
             l->end = n;
@@ -158,9 +157,9 @@ int insertAfter(List *l, ListElement *element, const void *data, int size)
 int copyList(List *dest, const List *source)
 {
     if (dest == NULL || source == NULL)return 0;
-    int length = source->size, i = 0;
+    int i = 0;
     ListElement *aux = source->head;
-    while (i < length && aux != NULL)
+    while (i < source->size && aux != NULL)
     {
         insert(dest, aux->data, aux->size);
         aux = aux->next;

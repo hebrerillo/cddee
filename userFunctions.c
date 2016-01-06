@@ -53,7 +53,6 @@ void printListInt(const List *l)
     {
         for (i = 0; i < (aux->size / sizeof (int)); i++)
         {
-
             printf("%d \n", ((int*) aux->data)[i]);
         }
         printf("\n");

@@ -1,5 +1,7 @@
-/* 
- * Functions to be defined by the user that will complete some data structures
+/*
+ * Summary: Functions to be defined by the user and that will complete some data structures
+ *
+ * Author: Jesús Romero <hebrerillo@gmail.com>
  */
 
 #ifndef USERFUNCTIONS_H

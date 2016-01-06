@@ -1,3 +1,11 @@
+/*
+ * Summary: linked list interface
+ * Description: Functions to implement the linked lists
+ *
+ * Author: Jesús Romero <hebrerillo@gmail.com>
+ */
+
+
 #ifndef LIST_H
 #define LIST_H
 #include <stdio.h>
@@ -11,16 +19,15 @@ extern "C" {
 #endif
 
     typedef struct ListElement_ {
-        void *data;
-        struct ListElement_ *next;
-        size_t size;
+        void *data; //the data associated with this element
+        struct ListElement_ *next; //A pointer to the next element
+        size_t size; //The size of the data of this element
     } ListElement;
 
     typedef struct List_ {
-        int size;
-        int (*match)(const void *key1, const void *key2);
-        ListElement *head;
-        ListElement *end;
+        int size; //The number of elements
+        ListElement *head; //A pointer to the first element
+        ListElement *end; //A pointer to the last element
         void (*destroy)(void *data); //user function to destroy the data of this list
         void (*printList)(const struct List_ *list); //user function to print the data of this list
 
@@ -37,30 +44,39 @@ extern "C" {
     /**
      * 
      * @param l Initializes a linked list
-     * @param destroyList The destroy function
+     * @param destroyList A user defined function to destroy an element from the list
+     * @param printList A user defined function to print the elements from the list
      */
     void init(List *l, void (*destroyList)(void *data), void (*printList)(const List *list));
 
     /**
-     * Inserts a new element after element
-     * @param l
-     * @param element
-     * @param data
-     * @return -1 In case of error
+     * Inserts a new element in the list after element
+     * @param l The list
+     * @param element The element after which the new element will be inserted. If NULL, the new element will be inserted 
+     * in the head
+     * @param data Data to be saved with the new element
+     * @param size The data size
+     * @return 1 if success, 0 otherwise
      */
     int insertAfter(List *l, ListElement *element, const void *data, int size);
 
     /**
      * Inserts a new element at the head of the list
-     * @param l
-     * @param data
-     * @return 
+     * @param l The list
+     * @param data Data to be saved with the new element
+     * @return 1 if success, 0 otherwise
      */
     int insert(List *l, const void *data, int size);
 
-    void destroyList(List *list);
+    
     /**
-     * 
+     * For every list element, call a user defined function to remove the element
+     * @param list
+     */
+    void destroyList(List *list);
+    
+    /**
+     * Copies the source list in the destination 
      * @param dest The destination list
      * @param source The source list to copy elements from
      * @return 1 if successful, 0 otherwise
@@ -70,12 +86,11 @@ extern "C" {
     /**
      * Builds a new List from data in a FILE
      * @param l The new list
-     * @param FILE The file to read data from
-     * @return 1 if the operation is successful, false otherwise
+     * @param filename The file name to read data from
+     * @return 1 if the operation is successful, 0 otherwise
      */
     int buildFromFile(List *l, const char *filename);
 
-    void destroyList(List *l);
 
     /**
      * Prints a list using the user-defined function l->printList
@@ -85,12 +100,10 @@ extern "C" {
 
     /**
      * Concatenates two lists (l1 and l2)
+     * Links the end of l1 with the head of l2, and makes the end of l2 the new end
      * @return 1 if the operation is successful, false otherwise
      */
     int concat(List *l1, List *l2);
-
-
-
 
 #ifdef __cplusplus
 }
