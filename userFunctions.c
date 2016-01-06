@@ -34,7 +34,7 @@ void printListString(const List *l)
 
     while (aux != NULL)
     {
-        printf("%s\n", (char*) aux->data);
+        printf("%s ", (char*) aux->data);
         aux = aux->next;
     }
     printf("\n");
@@ -49,7 +49,7 @@ void printListInt(const List *l)
     {
         for (i = 0; i < (aux->size / sizeof (int)); i++)
         {
-            printf("%d \n", ((int*) aux->data)[i]);
+            printf("%d ", ((int*) aux->data)[i]);
         }
         printf("\n");
         aux = aux->next;
