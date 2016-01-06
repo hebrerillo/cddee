@@ -80,7 +80,6 @@ int insert(List *l, void *data, int size)
     {
         l->head = n;
         l->end = l->head;
-        //        l->end->next = NULL;
     }
     else
     {
