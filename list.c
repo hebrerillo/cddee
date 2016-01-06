@@ -196,8 +196,6 @@ int removeNext(List *list, ListElement *element, void *data)
         }
     }
 
-    free(old->data);
-    old->data = NULL;
     free(old);
     old = NULL;
 
