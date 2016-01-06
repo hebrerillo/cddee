@@ -58,7 +58,7 @@ extern "C" {
      * @param size The data size
      * @return 1 if success, 0 otherwise
      */
-    int insertAfter(List *l, ListElement *element, const void *data, int size);
+    int insertAfter(List *l, ListElement *element, void *data, int size);
 
     /**
      * Inserts a new element at the head of the list
@@ -66,7 +66,7 @@ extern "C" {
      * @param data Data to be saved with the new element
      * @return 1 if success, 0 otherwise
      */
-    int insert(List *l, const void *data, int size);
+    int insert(List *l, void *data, int size);
 
     
     /**

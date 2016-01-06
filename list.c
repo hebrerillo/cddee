@@ -65,15 +65,14 @@ int buildFromFile(List *l, const char *filename)
     return 1;
 }
 
-int insert(List *l, const void *data, int size)
+int insert(List *l, void *data, int size)
 {
     ListElement *n = NULL;
     if ((n = (ListElement *) malloc(sizeof (ListElement))) == NULL)
     {
         return 0;
     }
-    n->data = (void *) malloc(size);
-    memcpy(n->data, data, size);
+    n->data = data;
     n->size = size;
     n->next = NULL;
 
@@ -122,7 +121,7 @@ void printList(const List *l)
         l->printList(l);//call user defined function to print the list
 }
 
-int insertAfter(List *l, ListElement *element, const void *data, int size)
+int insertAfter(List *l, ListElement *element, void *data, int size)
 {
     ListElement *n = NULL;
     if (element == NULL) //if element is NULL, insert at the head
@@ -136,8 +135,7 @@ int insertAfter(List *l, ListElement *element, const void *data, int size)
         {
             return 0;
         }
-        n->data = (void *) malloc(size);
-        memcpy(n->data, data, size);
+        n->data = data;
         n->next = NULL;
         n->size = size;
         if (element == l->end)//the new element is inserted after the end, so it becomes the new end
