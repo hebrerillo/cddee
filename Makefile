@@ -23,9 +23,7 @@ main : $(OBJS)
 	
 
 list: list.o
-	@echo "Creating Dynamic Libs $@...\c"
-	@gcc -shared -o $@.so $<
-	@echo "OK."
+	@$(CC) -shared -o lib$@.so $<
 	
 
 .PHONY: clean
