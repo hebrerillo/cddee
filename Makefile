@@ -5,22 +5,30 @@ CC     = gcc
 GCC    = gcc
 CFLAGS = -Wall $(CDEBUG) 
 
+SRCS_C = main.c list.c userFunctions.c
+OBJS = $(SRCS_C:.c=.o)
 
 
 
 %.o: %.c %.h
-	@$(CC) -c $(CFLAGS) $< -o $@
+	@$(CC) -c -fPIC $(CFLAGS) $< -o $@
 
 %.o: %.c
-	@$(CC) -c $(CFLAGS) $< -o $@
+	@$(CC) -c -fPIC $(CFLAGS) $< -o $@
 
-OBJS = main.o list.o userFunctions.o
-
+all: main list
 
 main : $(OBJS)
 	@$(CC) $(CFLAGS) $^ -o $@
+	
+
+list: list.o
+	@echo "Creating Dynamic Libs $@...\c"
+	@gcc -shared -o $@.so $<
+	@echo "OK."
+	
 
 .PHONY: clean
 clean:
-	\rm list
-	\find . -name '*.o' -delete
+	-rm $(OBJS) main *.so
+	
