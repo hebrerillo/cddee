@@ -11,13 +11,6 @@
 extern "C" {
 #endif
 
-
-    /**
-     * Destroy a list with single data associated
-     * @param data
-     */
-    void destroySimpleList(void *data);
-
     /**
      * Destroy a list of lists
      * @param data

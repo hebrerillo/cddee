@@ -1,5 +1,13 @@
 #include "list.h"
 
+
+void destroySimpleList(void *data)
+{
+    ListElement *element = (ListElement*) data;
+    free(element);
+}
+
+
 int concat(List *l1, List *l2)
 {
     if (l1->head == NULL || l2->head == NULL)//do not allow empty list concatenation
@@ -101,21 +109,26 @@ void init(List *l, void (*destroyList)(void *data), void (*printList)(const List
 void destroyList(List *l)
 {
     ListElement *old = NULL;
-    if (l->destroy != NULL)
-    {
 
-        while (l->head != NULL)
+    while (l->head != NULL)
+    {
+        old = l->head->next;
+        if (l->destroy != NULL)
         {
-            old = l->head->next;
-            l->destroy(l->head);//call user defined function to destroy the data
-            l->size--;
-            l->head = old;
+            l->destroy(l->head); //call user defined function to destroy the data
         }
-        l->destroy = NULL;
-        l->printList = NULL;
-        l->head = NULL;
-        l->end = NULL;
+        else //if there is no user defined function, call default destroy function to destroy a simple list
+        {
+            destroySimpleList(l->head);
+        }
+        l->size--;
+        l->head = old;
     }
+    l->destroy = NULL;
+    l->printList = NULL;
+    l->head = NULL;
+    l->end = NULL;
+
 }
 
 void printList(const List *l)

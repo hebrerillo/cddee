@@ -14,12 +14,6 @@ void printComplexList(const List *l)
     printf("Size = %d\n", l->size);
 }
 
-void destroySimpleList(void *data)
-{
-    ListElement *element = (ListElement*) data;
-    free(element);
-}
-
 void destroyComplexList(void *data)
 {
     ListElement *element = (ListElement*) data;
