@@ -213,5 +213,6 @@ ListElement* pop(List *l)
     
     ret = l->head;
     l->head = l->head->next;
+    l->size--;
     return ret;
 }
