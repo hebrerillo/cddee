@@ -1,5 +1,21 @@
 #include "list.h"
 
+ListIterator buildIterator(const List *list)
+{
+    ListIterator ret = { .current = list->head };
+    return ret;
+}
+
+ListElement* next(ListIterator *iterator)
+{
+    ListElement *ret = NULL;
+    if(iterator!=NULL && iterator->current!=NULL )
+    {
+	ret = iterator->current;
+	iterator->current = iterator->current->next;
+    }
+    return ret;
+}
 
 void destroySimpleList(void *data)
 {
