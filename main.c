@@ -6,23 +6,25 @@
 
 int main(int argc, char** argv)
 {
-    List l, l2,l3;
+    List l;
 
-    int n[] = {1, 2, 3};
-    int n2[] = {10, 11, 12};
-    
+    char n[] = "string 0";
+    char n2[] = "string 1";
 
-    //init lists
     init(&l, NULL, NULL);
-//    init(&l2, NULL, printListInt);
-
 
     //insert data
     insert(&l, n, sizeof (n));
     insert(&l, n2, sizeof (n2));
     
+    ListIterator it = buildIterator(&l);
+    ListElement *current;
+    while((current = next(&it)) != NULL)
+    {
+        printf("Data = %s\n",(char*)current->data);
+    }
+    
     destroyList(&l);
-//    destroyList(&l2);
     
     return (EXIT_SUCCESS);
 }

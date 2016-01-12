@@ -32,7 +32,31 @@ extern "C" {
         void (*printList)(const struct List_ *list); //user function to print the data of this list
 
     } List;
-
+    
+    
+    /**
+     * A list iterator to make it easier to traverse a list
+     */
+    typedef struct
+    {
+      ListElement *current;
+    }ListIterator;
+    
+    
+    /**
+     * Returns the next element in the interator
+     * @param iterator The iterator
+     * @return The next element in the iterator or NULL if all elements have been already consumed
+     */
+    ListElement* next(ListIterator *iterator);
+    
+    /**
+     * Builds an iterator from the head of the list
+     * @param list The list from which the Iterator is built
+     * @return A new iterator
+     */
+    ListIterator buildIterator(const List *list);
+    
     /**
      * Removes the head of the list and return it as a pointer to ListElement
      * @param l
