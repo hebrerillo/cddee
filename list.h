@@ -33,6 +33,10 @@ extern "C" {
 
     } List;
     
+    
+    /**
+     * A list iterator to make it easier to traverse a list
+     */
     typedef struct
     {
       ListElement *current;
