@@ -3,7 +3,7 @@ CDEBUG = -g
 
 CC     = gcc
 GCC    = gcc
-CFLAGS = -Wall $(CDEBUG) 
+CFLAGS = -Wall $(CDEBUG) -Werror
 
 SRCS_C = main.c list.c userFunctions.c
 OBJS = $(SRCS_C:.c=.o)
