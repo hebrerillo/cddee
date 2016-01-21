@@ -16,4 +16,5 @@ depcomp
 Makefile
 configure
 src/.deps/
+ar-lib
 
