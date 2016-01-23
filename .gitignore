@@ -17,4 +17,15 @@ Makefile
 configure
 src/.deps/
 ar-lib
+$(SRC_DIR)/
+.deps/
+.libs/
+bootstrap
+config.guess
+config.sub
+liblist.la
+libtool
+ltmain.sh
+src/.dirstamp
+src/list.lo
 
