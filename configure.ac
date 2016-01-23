@@ -1,5 +1,5 @@
 AC_INIT([eedd], [1.0], [hebrerillo@gmail.com])
-AM_INIT_AUTOMAKE([subdir-objects -Wall -Werror foreign])
+AM_INIT_AUTOMAKE([tar-ustar])
 AC_PROG_CC
 
 AC_CONFIG_MACRO_DIR([m4])

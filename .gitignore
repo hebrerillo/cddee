@@ -1,4 +1,5 @@
 *.o
+src/.dirstamp
 test
 core
 *.so
@@ -23,9 +24,13 @@ $(SRC_DIR)/
 bootstrap
 config.guess
 config.sub
-liblist.la
+*.la
 libtool
 ltmain.sh
-src/.dirstamp
-src/list.lo
-
+AUTHORS
+COPYING
+ChangeLog
+INSTALL
+NEWS
+README
+*.lo
